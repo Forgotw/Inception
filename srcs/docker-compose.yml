@@ -1,0 +1,24 @@
+services:
+  nginx:
+    container_name: nginx
+    image: nginx:custom
+    build: requirements/nginx
+    networks:
+      - inception-network
+    volumes:
+      - www:/var/www/html
+    ports:
+      - "443:443"
+      - "80:80"
+
+networks:
+  inception-network:
+    name: inception-network
+
+volumes:
+  www:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/lsohler/data/www
+      o: bind
