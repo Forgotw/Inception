@@ -9,11 +9,22 @@ services:
       - www:/var/www/html
     ports:
       - "443:443"
-      - "80:80"
+
+  mariadb:
+    container_name: mariadb
+    image: mariadb:custom
+    build: requirements/mariadb
+    networks:
+      - inception-network
+    volumes:
+      - database:/var/lib/mysql
+    env_file: .env
+
 
 networks:
   inception-network:
     name: inception-network
+
 
 volumes:
   www:
@@ -21,4 +32,11 @@ volumes:
     driver_opts:
       type: none
       device: /home/lsohler/data/www
+      o: bind
+
+  database:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/lsohler/data/database
       o: bind
