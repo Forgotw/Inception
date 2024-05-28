@@ -8,4 +8,11 @@ COPY conf/my.cnf /etc/mysql/my.cnf
 COPY conf/my.cnf /etc/my.cnf
 COPY conf/my.cnf ~/my.cnf
 
-CMD [ "tail", "-f"]
+RUN mkdir -p /run/mysqld && chown -R mysql:mysql /run/mysqld
+RUN mkdir -p /var/lib/mysql && chown -R mysql /var/lib/mysql && chmod 777 /var/lib/mysql
+
+COPY conf/setup_wp_db.sh /bin
+RUN chmod +x /bin/setup_wp_db.sh
+EXPOSE 3306
+
+CMD [ "setup_wp_db.sh"]

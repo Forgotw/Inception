@@ -19,7 +19,23 @@ services:
     volumes:
       - database:/var/lib/mysql
     env_file: .env
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -u${DB_USER} -p${DB_USER_PASS}"]
+      interval: 3s
+      start_period: 3s
 
+  wordpress:
+    container_name: wordpress
+    image: wordpress:custom
+    build: requirements/wordpress
+    networks:
+      - inception-network
+    volumes: 
+      - www:/var/www/html
+    env_file: .env
+    depends_on:
+      mariadb:
+        condition: service_healthy
 
 networks:
   inception-network:
