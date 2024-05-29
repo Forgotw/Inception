@@ -2,7 +2,7 @@ NAME = inception
 COMPOSE_ARGS = -f srcs/docker-compose.yml -p ${NAME}
 
 all: install
-	docker compose ${COMPOSE_ARGS} up -d --build
+	docker compose ${COMPOSE_ARGS} up --watch --build
 	@$(MAKE) status
 
 install:
@@ -33,6 +33,8 @@ fclean:
 	docker system prune -f
 	rm -f srcs/.env
 
+superclean: fclean
+	sudo rm -rf ../data
 re: fclean all
 
-.PHONY: all fclean re status logs nginx mariadb wordpress
+.PHONY: all fclean re status logs nginx mariadb wordpress superclean

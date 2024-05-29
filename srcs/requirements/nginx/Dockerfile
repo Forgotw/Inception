@@ -10,6 +10,7 @@ RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
 COPY ./conf/nginx.conf /etc/nginx/http.d/lsohler.42.fr.conf
 
 EXPOSE 443
+EXPOSE 80
 
 RUN nginx -t
 CMD [ "nginx", "-g", "daemon off;"]

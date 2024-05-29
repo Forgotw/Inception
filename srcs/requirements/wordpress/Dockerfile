@@ -1,7 +1,7 @@
 FROM debian:bookworm
 
 RUN apt update && apt upgrade -y
-RUN apt install wget mariadb-client php8.2 php-fpm php-cgi -y
+RUN apt install wget mariadb-client php8.2 php-fpm php-cgi php-mysql -y
 
 COPY conf/setup_wp.sh /bin
 RUN chmod +x /bin/setup_wp.sh
