@@ -10,6 +10,8 @@ services:
     ports:
       - "443:443"
       - "80:80"
+    depends_on: 
+      - wordpress
 
   mariadb:
     container_name: mariadb
@@ -40,7 +42,7 @@ services:
 
 networks:
   inception-network:
-    name: inception-network
+    driver: bridge
 
 
 volumes:

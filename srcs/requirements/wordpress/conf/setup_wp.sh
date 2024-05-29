@@ -1,11 +1,6 @@
 #!/bin/sh
 
-
-# echo "mariadb -h mariadb -u $DB_USER --password=$DB_USER_PASS -P 3306 $DB_NAME -v"
-# mariadb -h mariadb -u $DB_USER --password=$DB_USER_PASS -P 3306 $DB_NAME -v > marialog.txt
-# echo "--------------AFTER--------------"
-
-if [ -f wordpress/wp-config.php ]
+if [ -f /var/www/html/wp-config.php ]
 then
     echo "OK"
 else
