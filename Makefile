@@ -6,9 +6,9 @@ all: install
 	@$(MAKE) status
 
 install:
-	mkdir -p /home/lsohler/data/www
-	mkdir -p /home/lsohler/data/database
-	cp ../.env srcs/
+	mkdir -p /Users/${USER}/data/www
+	mkdir -p /Users/${USER}/data/database
+	cp .env srcs/
 
 status:
 	docker compose ${COMPOSE_ARGS} ps -a
@@ -34,7 +34,7 @@ fclean:
 	rm -f srcs/.env
 
 superclean: fclean
-	sudo rm -rf ../data
+	rm -rf ../data
 re: fclean all
 
 .PHONY: all fclean re status logs nginx mariadb wordpress superclean

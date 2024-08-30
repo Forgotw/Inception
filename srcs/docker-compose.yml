@@ -9,7 +9,7 @@ services:
       - www:/var/www/html
     ports:
       - "443:443"
-      - "80:80"
+      # - "80:80"
     depends_on: 
       - wordpress
 
@@ -50,12 +50,12 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: /home/lsohler/data/www
+      device: /Users/leosohler/data/www
       o: bind
 
   database:
     driver: local
     driver_opts:
       type: none
-      device: /home/lsohler/data/database
+      device: /Users/leosohler/data/database
       o: bind

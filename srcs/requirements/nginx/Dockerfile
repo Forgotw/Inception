@@ -13,7 +13,7 @@ RUN chmod 600 /etc/ssl/certs/lsohler.key
 COPY ./conf/nginx.conf /etc/nginx/conf.d/lsohler.42.fr.conf
 
 EXPOSE 443
-EXPOSE 80
+# EXPOSE 80
 
 # RUN nginx -t
 CMD [ "nginx", "-g", "daemon off;"]
